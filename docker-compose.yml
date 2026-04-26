@@ -1,0 +1,68 @@
+services:
+  db:
+    image: mysql:8.0                    # Upgraded from 5.7 (recommended)
+    container_name: epicbook-db
+    restart: unless-stopped
+    environment:
+      MYSQL_ROOT_PASSWORD: rootpassword
+      MYSQL_DATABASE: bookstore
+      MYSQL_USER: mysqladmin
+      MYSQL_PASSWORD: StrongPassword123!
+    volumes:
+      - db_data:/var/lib/mysql
+      - ./db:/docker-entrypoint-initdb.d
+    networks:
+      - backend_net
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-u", "root", "-prootpassword"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 30s
+
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: epicbook-app
+    restart: unless-stopped
+    depends_on:
+      db:
+        condition: service_healthy
+    environment:
+      NODE_ENV: production
+      JAWSDB_URL: mysql://mysqladmin:StrongPassword123!@db:3306/bookstore
+    ports:
+      - "8080:8080"                     # You can change to 8081:8080 if needed
+    networks:
+      - backend_net
+      - frontend_net
+    healthcheck:
+      test: ["CMD", "wget", "--spider", "--quiet", "http://localhost:8080/"]
+      interval: 30s
+      timeout: 10s
+      retries: 5
+      start_period: 40s
+
+  proxy:
+    image: nginx:alpine
+    container_name: epicbook-proxy
+    restart: unless-stopped
+    depends_on:
+      app:
+        condition: service_started
+    ports:
+      - "80:80"
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf:ro
+      - proxy_logs:/var/log/nginx
+    networks:
+      - frontend_net
+
+networks:
+  frontend_net:
+  backend_net:
+
+volumes:
+  db_data:
+  proxy_logs:

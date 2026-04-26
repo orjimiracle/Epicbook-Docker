@@ -1,6 +1,9 @@
 {
   "development": {
     "username": "root",
+
+
+
     "password": "demo1234",
     "database": "bookstore",
     "host": "127.0.0.1",
@@ -14,7 +17,15 @@
     "dialect": "mysql"
   },
   "production": {
-    "use_env_variable":"JAWSDB_URL",
-    "dialect": "mysql"
+  "use_env_variable": "JAWSDB_URL",
+  "dialect": "mysql",
+  "dialectOptions": {
+    "ssl": {
+      "require": true,
+      "rejectUnauthorized": false
+    }
   }
+} 
+ 
+
 }

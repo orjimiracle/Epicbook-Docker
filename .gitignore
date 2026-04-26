@@ -1,2 +1,23 @@
 node_modules
 .DS_Store
+.gitignore
+.dockerignore
+# Secrets
+.env
+*.pem
+*.key
+
+# Dependencies
+node_modules/
+package-lock.json (Optional: some prefer to keep this, but ignore it if strictly using Docker for lock management)
+
+# Docker/System
+.docker/
+*.tar
+.DS_Store
+
+# Logs & Data
+logs/
+*.log
+db_data/
+dump.rdb

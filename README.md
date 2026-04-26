@@ -1,183 +1,271 @@
-# The EpicBook! - Project Documentation
 
-## 📌 Introduction
+# 📚 The EpicBook – Production-Style DevOps Deployment on Azure
 
-The **EpicBook!** project is an online bookstore application that allows users to browse a collection of books, add them to their cart, and proceed to checkout. This documentation provides an overview of the application's features, functionalities, and user flow.
-
-## Documentation Structure
-
-1️⃣ Home Page
-
-2️⃣ Menu Navigation
-
-3️⃣ Gallery Section
-
-4️⃣ Product Details
-
-5️⃣ Add to Cart
-
-6️⃣ Cart & Order Summary
-
-7️⃣ Checkout & Order Confirmation
-
-#### Note: [Installation, Configuration & Troubleshooting Guide](https://github.com/pravinmishraaws/theepicbook/blob/main/Installation%20%26%20Configuration%20Guide.md)
-
-## Application Architecture
-
-![Screenshot 2025-02-06 at 12 44 40](https://github.com/user-attachments/assets/50df00cb-ee85-4e9d-beb6-f63a862fbb2a)
-
+A fully containerized, production-style full-stack application deployed on Azure using Docker, Terraform, Ansible, and Nginx reverse proxy with CI/CD principles and infrastructure-as-code practices.
 
 ---
 
-## **1️⃣ Home Page**
+## 🚀 Project Overview
 
-### **Overview**
+**The EpicBook** is a cloud-native web application deployed using a complete DevOps lifecycle approach.
 
-The **Home Page** serves as the primary interface where users can explore different books available for purchase. It features a visually appealing layout with a structured book listing.
+This project demonstrates:
+- Infrastructure provisioning with **Terraform**
+- Configuration management with **Ansible**
+- Containerization with **Docker**
+- Reverse proxy routing using **Nginx**
+- CI/CD automation concepts (optional integration)
+- Cloud deployment on **Azure VM**
+- Persistent storage with **MySQL volumes**
 
-### **Features:**
-
-- Displays a collection of books with their **title, author, and price**.
-- Users can click on a book to view more **detailed information**.
-- "**Add to Cart**" button for each book.
-- A **navigation bar** for accessing different sections of the site.
-
-![Screenshot 2025-02-06 at 08 15 06](https://github.com/user-attachments/assets/4aa515e7-fb05-4f57-8dd6-722a4bdab8b2)
-
-![Screenshot 2025-02-06 at 08 15 26](https://github.com/user-attachments/assets/f915a1a5-c5a0-4249-beb1-b09ea58bef79)
-
----
-
-## **2️⃣ Menu Navigation**
-
-### **Overview**
-
-The **menu** provides quick access to different book categories, enhancing user experience by allowing filtering.
-
-### **Features:**
-
-- Users can select categories like:
-  - **NYT Bestsellers**
-  - **Classics**
-  - **Children’s Books**
-  - **Top 9**
-  - **Social Justice**
-  - **Fantasy**
-- Responsive design with an expandable/collapsible sidebar.
-
-![Screenshot 2025-02-06 at 08 11 14](https://github.com/user-attachments/assets/6dabd639-75ee-4bd1-83c0-5d04bc042996)
+The system is designed with production-grade principles such as:
+- Health checks
+- Service dependency management
+- Network segmentation
+- Secure environment variable handling
+- Reverse proxy isolation
 
 ---
 
-## **3️⃣ Gallery Section**
+## 🏗️ Architecture
 
-### **Overview**
+```
 
-The **Gallery** provides a different view of books, displaying them in a visually attractive **grid format**.
+User → Nginx Reverse Proxy → Node.js App → MySQL Database
+│
+Docker Compose Network
+│
+Persistent Volumes (DB + Logs)
 
-### **Features:**
+```
 
-- Showcases books in a **larger display** for better visibility.
-- Each book has a "**Browse Through**" option for more details.
-- Seamless user experience with an intuitive interface.
-
-![Screenshot 2025-02-06 at 08 13 29](https://github.com/user-attachments/assets/428fbf43-11fd-4b07-81cc-5dad60f2ca3e)
-
----
-
-## **4️⃣ Product Details Page**
-
-### **Overview**
-
-Clicking on a book opens the **Product Details Page**, where users can learn more before making a purchase.
-
-### **Features:**
-
-- **Book cover preview**
-- **Detailed description** of the book
-- **Genre, Publication Year, and Availability count**
-- **"Add to Cart" button** for easy purchase
-- **Modal pop-up design** to display details without leaving the current page
-
-![Screenshot 2025-02-06 at 08 19 14](https://github.com/user-attachments/assets/809d4c5c-1a51-454e-9e41-a55a3108d64a)
+### Core Components:
+- **Frontend/UI** → Served via Node.js application
+- **Backend API** → Handles business logic and database communication
+- **Database** → MySQL 8.0 with persistent storage
+- **Reverse Proxy** → Nginx routing `/` and `/api` traffic
 
 ---
 
-## **5️⃣ Add to Cart**
+## ⚙️ Tech Stack
 
-### **Overview**
-
-Users can add books to their **shopping cart** for purchase.
-
-### **Features:**
-
-- Clickable "**Add to Cart**" button for each book.
-- The **cart icon updates** in real time to reflect the number of items added.
-- Items remain in the cart until they are removed or purchased.
-
-![Screenshot 2025-02-06 at 08 22 42](https://github.com/user-attachments/assets/eb58f2f2-dbd5-4b8e-9448-699fde7b505e)
+- **Cloud**: Azure VM (Ubuntu)
+- **Infrastructure as Code**: Terraform
+- **Configuration Management**: Ansible
+- **Containerization**: Docker & Docker Compose
+- **Web Server / Proxy**: Nginx
+- **Database**: MySQL 8.0
+- **Runtime**: Node.js (Express)
 
 ---
 
-## **6️⃣ Cart & Order Summary**
+## 📦 Project Structure
 
-### **Overview**
+```
 
-The **Cart Page** allows users to review selected books before proceeding to checkout.
+theepicbook/
+│
+├── docker-compose.yml
+├── Dockerfile
+├── nginx.conf
+├── .env
+│
+├── db/
+│   ├── schema.sql
+│   ├── seed.sql
+│
+├── app/
+│   ├── backend/
+│   ├── frontend/
+│
+├── terraform/
+│   ├── main.tf
+│   ├── variables.tf
+│
+├── ansible/
+│   ├── playbook.yml
+│   ├── inventory
+│
+└── docs/
+├── architecture.png
 
-### **Features:**
-
-- Displays a **list of books** added to the cart with title, quantity, and price.
-- An **Order Summary box** shows the **total price**.
-- A **"Checkout" button** to proceed with the order.
-
-![Screenshot 2025-02-06 at 08 24 48](https://github.com/user-attachments/assets/6bddfc9e-97d1-4723-9aad-0f9cf067fc58)
-
----
-
-## **7️⃣ Checkout & Order Confirmation**
-
-### **Overview**
-
-The **Checkout Process** finalizes the purchase and confirms the order placement.
-
-### **Features:**
-
-- **Final Order Review** before placing the order.
-- **Checkout Button** to confirm the order.
-- **Confirmation Message**: A modal pop-up appears with the message **"Your order is placed!"**
-- **Cart is cleared** once the order is placed.
-
-![Screenshot 2025-02-06 at 08 25 23](https://github.com/user-attachments/assets/751de6c6-213f-4fa5-87c2-e8d1d3f34829)
-
-## System Architecture
-
-### 🛠️ Key Components
-
-- **Frontend**: HTML, CSS, JavaScript for UI rendering
-- **Backend**: Node.js + Express.js handles API requests
-- **Database**: MySQL for storing books, orders, and user data
-- **Reverse Proxy**: Nginx to handle request forwarding
-
-**Cloud Services (Future)**:  AWS EC2, RDS, S3, CloudFront, Lambda
+````
 
 ---
 
-## 🎯 **Conclusion**
+## 🐳 Docker Architecture
 
-The **EpicBook!** application provides a seamless user experience for discovering, selecting, and purchasing books online. With its well-structured navigation, visually appealing gallery, detailed product descriptions, and smooth checkout flow, it serves as a great example of an e-commerce bookstore.
+### Services:
+
+### 1. Database (MySQL 8.0)
+- Persistent volume: `db_data`
+- Health-checked
+- Initialized with schema + seed data
+
+### 2. Backend App (Node.js)
+- Built using multi-stage Dockerfile
+- Connected to MySQL via internal network
+- Exposes API endpoints
+
+### 3. Nginx Reverse Proxy
+- Routes:
+  - `/` → frontend app
+  - `/api` → backend service
+- Logs persisted via volume mount
 
 ---
 
-### ** Next Steps**
+## 🔁 Reverse Proxy Routing
 
-If you are developer, you can consider developing below feature and send the pull request.
+| Route | Service |
+|------|--------|
+| `/` | Frontend App |
+| `/api` | Backend API |
 
-- Deployment and hosting options.
-- Implementing a payment gateway.
-- Enhancing user authentication and order history.
+Nginx ensures:
+- No direct DB exposure
+- Clean separation of concerns
+- Load distribution-ready architecture
 
+---
 
+## 🔐 Environment Variables
 
+All secrets are managed via `.env` file:
+
+```env
+MYSQL_ROOT_PASSWORD=rootpassword
+MYSQL_DATABASE=bookstore
+MYSQL_USER=mysqladmin
+MYSQL_PASSWORD=StrongPassword123!
+JAWSDB_URL=mysql://mysqladmin:password@db:3306/bookstore
+````
+
+⚠️ No secrets are hardcoded in images or Git history.
+
+---
+
+## 🧠 Key Features
+
+* Multi-stage Docker builds (optimized images)
+* Service health checks (DB + App)
+* Restart policies for resilience
+* Named Docker networks (frontend/backend isolation)
+* Persistent MySQL storage
+* Reverse proxy abstraction layer
+* Production-style environment separation
+
+---
+
+## 🚀 Deployment Steps
+
+### 1. Clone Repository
+
+```bash
+git clone https://github.com/orjimiracle/Epicbook-Docker.git
+cd theepicbook
+```
+
+### 2. Start Services
+
+```bash
+docker compose up -d --build
+```
+
+### 3. Verify Running Containers
+
+```bash
+docker compose ps
+```
+
+### 4. Access Application
+
+```
+http://<YOUR_AZURE_VM_PUBLIC_IP>
+```
+
+---
+
+## 🩺 Health Checks
+
+* MySQL: `mysqladmin ping`
+* Backend: `/health`
+* Frontend: `/`
+
+Ensures service readiness before traffic routing.
+
+---
+
+## ⚠️ Challenges Faced & Solutions
+
+### 1. MySQL Version Conflict
+
+* Issue: Old volume incompatible with upgraded MySQL version
+* Fix: Upgraded to MySQL 8.0 and reinitialized volume
+
+### 2. Service Startup Order
+
+* Issue: Backend started before DB was ready
+* Fix: Added `depends_on` with health checks + increased DB start period
+
+### 3. Reverse Proxy Routing Issues
+
+* Issue: API endpoints not resolving externally
+* Fix: Corrected Nginx upstream configuration and Docker DNS resolution
+
+---
+
+## 📊 What I Learned
+
+* Designing multi-service architectures with Docker Compose
+* Importance of service orchestration in distributed systems
+* How reverse proxies abstract backend complexity
+* Real-world issues with database persistence and versioning
+* Cloud VM deployment workflows using Infrastructure as Code
+* Debugging container networking and DNS resolution
+
+---
+
+## 🔐 Security Practices Applied
+
+* No direct database exposure to public network
+* Internal Docker networks for service communication
+* Environment-based secret management
+* Reverse proxy as single entry point
+* Minimal base images (security + performance optimization)
+
+---
+
+## 🌍 Future Improvements
+
+* Add CI/CD pipeline (GitHub Actions / Azure DevOps)
+* Implement HTTPS with Let’s Encrypt
+* Add centralized logging (ELK stack)
+* Introduce Kubernetes migration
+* Add monitoring (Prometheus + Grafana)
+
+---
+
+## 👨‍💻 Author
+
+**Orji, Ekeoma Miracle**
+DevOps / Cloud & Security Engineer
+Focus: DevSecOps | Cloud Infrastructure | Automation | Kubernetes
+
+---
+
+## 📜 License
+
+This project is open-source for learning and portfolio purposes.
+
+---
+
+## ⭐ Acknowledgement
+
+Built as part of a hands-on DevOps learning journey focused on production-grade system design, cloud deployment, and infrastructure automation.
+
+```
+
+---
 
 
