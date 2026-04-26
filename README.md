@@ -1,9 +1,15 @@
 
+https://github.com/user-attachments/assets/f8cf8a84-cbb1-47ce-911b-364db4b7de4d
+
 # 📚 The EpicBook – Production-Style DevOps Deployment on Azure
 
 A fully containerized, production-style full-stack application deployed on Azure using Docker, Terraform, Ansible, and Nginx reverse proxy with CI/CD principles and infrastructure-as-code practices.
 
 ---
+
+
+https://github.com/user-attachments/assets/a8f6fa48-e56f-4439-858d-437e66608029
+
 
 ## 🚀 Project Overview
 
@@ -26,9 +32,6 @@ The system is designed with production-grade principles such as:
 - Reverse proxy isolation
 
 ---
-<video src="https://drive.google.com/file/d/1SHrzzT2_ip70K39gJ7BLcPEEdwoSM6zW/view?usp=sharing" width="100%" controls>
-  Your browser does not support the video tag.
-</video>
 
 ## 🏗️ Architecture
 
