@@ -8,9 +8,6 @@ A fully containerized, production-style full-stack application deployed on Azure
 ---
 
 
-https://github.com/user-attachments/assets/a8f6fa48-e56f-4439-858d-437e66608029
-
-
 ## 🚀 Project Overview
 
 **The EpicBook** is a cloud-native web application deployed using a complete DevOps lifecycle approach.
