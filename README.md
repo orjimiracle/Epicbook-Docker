@@ -26,13 +26,14 @@ The system is designed with production-grade principles such as:
 - Reverse proxy isolation
 
 ---
+<video src="https://drive.google.com/file/d/1SHrzzT2_ip70K39gJ7BLcPEEdwoSM6zW/view?usp=sharing" width="100%" controls>
+  Your browser does not support the video tag.
+</video>
 
 ## 🏗️ Architecture
 
 ```
-<video src="https://drive.google.com/file/d/1SHrzzT2_ip70K39gJ7BLcPEEdwoSM6zW/view?usp=sharing" width="100%" controls>
-  Your browser does not support the video tag.
-</video>
+
 User → Nginx Reverse Proxy → Node.js App → MySQL Database
 │
 Docker Compose Network
