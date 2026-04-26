@@ -21,3 +21,28 @@ logs/
 *.log
 db_data/
 dump.rdb
+
+
+# Dependencies
+node_modules/
+
+# Environment files
+.env
+.env.*
+
+# Logs
+logs/
+*.log
+
+# OS / IDE
+.DS_Store
+.vscode/
+.idea/
+
+# Runtime files
+*.pid
+*.seed
+
+# Optional builds
+dist/
+build/
